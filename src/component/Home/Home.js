@@ -10,6 +10,7 @@ import { winterProductData } from "../../data/winterProductData";
 import { chairProductData } from "../../data/chairProductData";
 import { autumnProductData } from "../../data/autumnProductData";
 import TrendingProduct from "../Components/TrendingProduct";
+import memberImage from "../../Images/member.jpg";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -152,7 +153,10 @@ const Home = () => {
         </section>
 
         <section className="mb-4">
-          <div className="w-100 d-flex justify-content-around align-items-center">
+          <div
+            className="w-100 d-flex justify-content-around align-items-center flex-wrap"
+            style={{ minWidth: "300px" }}
+          >
             {autumnProductData &&
               autumnProductData.map((item, i) => (
                 // <SwiperSlide key={i}>
@@ -162,14 +166,43 @@ const Home = () => {
                   name={item.name}
                   price={item.price}
                   category={item.category}
+                  className="mb-4"
                 />
                 // </SwiperSlide>
               ))}
           </div>
-          <div className="w-25 m-auto mt-3">
-            <button className="btn btn-primary rounded-pill mx-atuo ">
-              Explore #Autumn_Sale_2023
+          <div className="w-100 m-auto mt-3 d-flex justify-content-center">
+            <button className="btn btn-primary rounded-pill mx-atuo">
+              Explore #Autumn_Sale_2024
             </button>
+          </div>
+        </section>
+
+        <section>
+          <div
+            className="w-100 d-flex align-items-center flex-wrap justify-content-around"
+            style={{ minWidth: "50%" }}
+          >
+            <div className="">
+              <h2>Member yet?</h2>
+              <p>Get exclusive perks and early access.</p>
+            </div>
+            <div className="">
+              <button className="btn btn-primary rounded-pill px-4 d-inline">
+                join now
+              </button>
+              <p className="d-inline ms-3 text-primary">
+                Know more <i className="bi bi-chevron-right"></i>
+              </p>
+            </div>
+          </div>
+          <div className="member-height mb-5 mt-2">
+            <img
+              src={memberImage}
+              alt="member"
+              className="img-fluid"
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            />
           </div>
         </section>
       </div>

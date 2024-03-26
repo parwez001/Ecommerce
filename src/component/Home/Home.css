@@ -19,6 +19,9 @@
   height: 80vh;
   overflow: hidden;
 }
+.member-height {
+  height: 70vh;
+}
 @media screen and (max-width: 550px) {
   .tagname {
     margin-top: 10px !important;
