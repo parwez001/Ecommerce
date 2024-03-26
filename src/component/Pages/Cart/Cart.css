@@ -1,0 +1,23 @@
+.section-bg {
+  background-color: #eef4fc;
+  border-top: #eef4fc;
+  border-radius: 1em 1em 0 0;
+}
+.section2-bg {
+  background-color: #eef4fc;
+  border-top: white;
+  border-radius: 0 0 1em 1em;
+  margin-top: 2px;
+}
+.section3-bg {
+  background-color: #eef4fc;
+  border-radius: 1em;
+  margin-top: 2px;
+}
+.left-col {
+  height: 100px !important;
+  max-width: 50vw;
+}
+.right-col {
+  max-width: 50vw;
+}

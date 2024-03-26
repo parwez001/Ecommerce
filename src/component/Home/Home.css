@@ -1,0 +1,49 @@
+.tagname {
+  font-family: roboto;
+  font-family: Roboto;
+  /* font-size: 20px; */
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.home-info {
+  font-family: roboto;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 57.6px;
+  margin-top: 20%;
+  text-align: left;
+}
+.image-section {
+  box-sizing: border-box;
+  height: 80vh;
+  overflow: hidden;
+}
+@media screen and (max-width: 550px) {
+  .tagname {
+    margin-top: 10px !important;
+  }
+  .home-info {
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 14%;
+  }
+  .image-section {
+    height: 30vh;
+  }
+  .section-2 {
+    flex-direction: column;
+  }
+  .section-2-first-div {
+    /* border: 2px solid red; */
+    width: 100% !important;
+  }
+  .section-2-heading {
+    /* border: 2px solid red; */
+
+    font-size: 25px;
+  }
+  .section-2 > button {
+    width: 50%;
+  }
+}
