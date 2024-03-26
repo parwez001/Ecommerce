@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterImage from "../../Images/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
+import axios from "axios";
 
 import { toast } from "react-toastify";
 export const Register = () => {
@@ -11,18 +12,24 @@ export const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handlePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   console.log(name, "", email, "", password, " ", confirmPassword);
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Registration successfull");
-    navigate("/");
+    try {
+      const res = axios.post("http://localhost:8080/api/register", {
+        name,
+        email,
+        password,
+        phoneNumber: phone,
+      });
+      console.log(res);
+      toast.success("Registration successfull");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

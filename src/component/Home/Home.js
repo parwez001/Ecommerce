@@ -7,6 +7,9 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Product from "../Components/Product";
 import { winterProductData } from "../../data/winterProductData";
+import { chairProductData } from "../../data/chairProductData";
+import { autumnProductData } from "../../data/autumnProductData";
+import TrendingProduct from "../Components/TrendingProduct";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -101,6 +104,73 @@ const Home = () => {
                 </SwiperSlide>
               ))}
           </Swiper>
+        </section>
+
+        <section className="my-4 d-flex justify-content-between section-2">
+          <div className="w-75 section-2-first-div">
+            <p>The most relaxed position in your choices </p>
+            <h3 className=" text-primary fw-bold section-2-heading">
+              Sitting arrangements sorted
+            </h3>
+            <p>
+              Curated collection at market crash price for all your Chair needs
+            </p>
+          </div>
+          <button className="btn btn-outline-primary rounded-pill px-4 h-25">
+            view all
+          </button>
+        </section>
+
+        <section className="mb-5">
+          <Swiper
+            slidesPerView={ProductCount}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+            style={{ height: "29em" }}
+          >
+            {chairProductData &&
+              chairProductData.map((item, i) => (
+                <SwiperSlide key={i}>
+                  <Product
+                    image={item.src}
+                    name={item.name}
+                    price={item.price}
+                    category={item.category}
+                  />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </section>
+
+        <section className="mb-4">
+          <p className="text-center fw-bold">#Autumn_Sale_2023</p>
+          <h2 className="text-center fw-bold ">Trending products on Offers</h2>
+        </section>
+
+        <section className="mb-4">
+          <div className="w-100 d-flex justify-content-around align-items-center">
+            {autumnProductData &&
+              autumnProductData.map((item, i) => (
+                // <SwiperSlide key={i}>
+                <TrendingProduct
+                  key={i}
+                  image={item.src}
+                  name={item.name}
+                  price={item.price}
+                  category={item.category}
+                />
+                // </SwiperSlide>
+              ))}
+          </div>
+          <div className="w-25 m-auto mt-3">
+            <button className="btn btn-primary rounded-pill mx-atuo ">
+              Explore #Autumn_Sale_2023
+            </button>
+          </div>
         </section>
       </div>
     </>
