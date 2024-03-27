@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Cart.css";
 import charImage from "../../../Images/chair.png";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../Layout/Footer/Footer";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -126,6 +127,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

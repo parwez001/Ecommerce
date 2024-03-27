@@ -1,0 +1,25 @@
+@media screen and (max-width: 575.33px) {
+  .small-screen-d-none {
+    display: none;
+  }
+  .small-screen {
+    flex-direction: row !important;
+    justify-content: space-between;
+  }
+  .bi {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .for-small {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .small-link-font {
+    font-size: 13px;
+  }
+}

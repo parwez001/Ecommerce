@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cart from "./component/Pages/Cart/Cart";
 import Checkout from "./component/Pages/Checkout/Checkout";
+import Footer from "./component/Layout/Footer/Footer";
 
 function App() {
   return (

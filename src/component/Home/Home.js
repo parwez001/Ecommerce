@@ -11,6 +11,7 @@ import { chairProductData } from "../../data/chairProductData";
 import { autumnProductData } from "../../data/autumnProductData";
 import TrendingProduct from "../Components/TrendingProduct";
 import memberImage from "../../Images/member.jpg";
+import Footer from "../Layout/Footer/Footer";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -205,6 +206,7 @@ const Home = () => {
             />
           </div>
         </section>
+        <Footer />
       </div>
     </>
   );
