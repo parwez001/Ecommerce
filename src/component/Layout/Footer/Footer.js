@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container-lg mb-4">
         <div className="row">
           <div className="col-lg-6 col-md-12">
-            <h3>Trsutt.com</h3>
+            <h3>Trustt.com</h3>
             <div className="d-flex align-items-center">
               <div className="w-50">
                 <input
