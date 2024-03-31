@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import trusttLogo from "../../../Images/trusttLogo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../actions/userAction";
 
 const Header = () => {
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
   return (
     <>
       <div className="container-lg">
@@ -61,15 +68,27 @@ const Header = () => {
                   <span className="ms-1">1</span>
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link btn btn-primary rounded-pill p-1 w-100 me-3"
-                  aria-current="page"
-                  to="/login"
-                >
-                  Sign In
-                </Link>
-              </li>
+              {isAuthenticated ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link btn btn-primary rounded-pill p-1 w-100 me-3"
+                    aria-current="page"
+                    onClick={handleLogout}
+                  >
+                    Sign out
+                  </Link>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link btn btn-primary rounded-pill p-1 w-100 me-3"
+                    aria-current="page"
+                    to="/login"
+                  >
+                    Sign In
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </nav>

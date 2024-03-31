@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Cart.css";
-import charImage from "../../../Images/chair.png";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Layout/Footer/Footer";
+import { cartData } from "../../../data/cartData";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const [quantities, setQuantities] = useState(
+    cartData.map((item) => ({ id: item.id, quantity: 1 }))
+  );
+
+  const increaseQuantity = (id) => {
+    setQuantities((prevQuantities) =>
+      prevQuantities.map((quantity) =>
+        quantity.id === id
+          ? { ...quantity, quantity: quantity.quantity + 1 }
+          : quantity
+      )
+    );
+  };
+
+  // const decreaseQuantity = (id) => {
+  //   setQuantities((prevQuantities) =>
+  //     prevQuantities.map((quantity) =>
+  //       quantity.id === id && quantity.quantity > 1
+  //         ? { ...quantity, quantity: quantity.quantity - 1 }
+  //         : quantity
+  //     )
+  //   );
+  // };
 
   return (
     <div className="container-lg">
@@ -19,70 +42,45 @@ const Cart = () => {
       </div>
       <div className="row">
         <div className="col-lg-8 h-auto">
-          <div className="mt-3 d-flex w-100">
-            <div className="w-25 ">
-              <img className="img-fluid rounded-3" src={charImage} alt="char" />
-            </div>
-            <div className="ms-4 w-100">
-              <div className="d-flex justify-content-between">
-                <p>Rocking chair</p>
-                <p>10,999</p>
-              </div>
-              <p>Description</p>
-              <div className="d-flex justify-content-between">
-                <span className=" px-3  d-flex align-items-center ">
-                  <Link>
-                    <i className="bi bi-dash-circle"></i>
-                  </Link>
-                  <span
-                    className="mx-2 fs-5 text-primary border-1 border border-primary text-center"
-                    style={{ width: "2rem" }}
-                  >
-                    {" "}
-                    1{" "}
-                  </span>
+          {cartData &&
+            cartData.map((item, i) => (
+              <div className="mt-3 d-flex w-100" key={i}>
+                <div className="w-25 ">
+                  <img
+                    className="img-fluid rounded-3"
+                    src={item.img}
+                    alt="char"
+                  />
+                </div>
+                <div className="ms-4 w-100">
+                  <div className="d-flex justify-content-between">
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                  </div>
+                  <p>{item.description}</p>
+                  <div className="d-flex justify-content-between">
+                    <span className=" px-3  d-flex align-items-center ">
+                      <Link>
+                        <i className="bi bi-dash-circle"></i>
+                      </Link>
+                      <span
+                        className="mx-2 fs-5 text-primary border-1 border border-primary text-center"
+                        style={{ width: "2rem" }}
+                      >
+                        {quantities.find((q) => q.id === item.id).quantity}
+                      </span>
 
-                  <Link>
-                    <i className="bi-plus-circle"></i>
-                  </Link>
-                </span>
-                <button className="mt-1 py-1 px-3 rounded-pill btn btn-outline-danger">
-                  Remove
-                </button>
+                      <Link onClick={increaseQuantity}>
+                        <i className="bi-plus-circle"></i>
+                      </Link>
+                    </span>
+                    <button className="mt-1 py-1 px-3 rounded-pill btn btn-outline-danger">
+                      Remove
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="mt-3 d-flex w-100">
-            <div className="w-25 ">
-              <img className="img-fluid rounded-3" src={charImage} alt="char" />
-            </div>
-            <div className="ms-4 w-100">
-              <div className="d-flex justify-content-between">
-                <p>Rocking chair</p>
-                <p>10,999</p>
-              </div>
-              <p>Description</p>
-              <div className="d-flex justify-content-between">
-                <span className="px-3  d-flex align-items-center ">
-                  <Link>
-                    <i className="bi bi-dash-circle "></i>
-                  </Link>
-                  <span
-                    className="mx-2 fs-5 text-primary border-1 border-primary border text-center"
-                    style={{ width: "2rem" }}
-                  >
-                    1
-                  </span>
-                  <Link>
-                    <i className="bi-plus-circle"></i>
-                  </Link>
-                </span>
-                <button className="mt-1 py-1 px-3 rounded-pill btn btn-outline-danger">
-                  Remove
-                </button>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
 
         <div className="col-lg-4 ">

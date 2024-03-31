@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../../Images/login.png";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../actions/userAction";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  console.log(email + " " + password);
+  const dispatch = useDispatch();
+  // console.log(email + " " + password);
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    toast.success("login Success");
-    navigate("/");
+    dispatch(loginUser(email, password));
   };
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
   return (
     <>
       <div className="container">
@@ -68,6 +74,7 @@ const Login = () => {
                 className="btn btn-primary w-100 rounded-pill mt-2"
               >
                 Log in
+                {loading ? <>Loadin...</> : <> Log in </>}
               </button>
             </form>
 

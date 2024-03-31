@@ -15,7 +15,7 @@ import Footer from "../Layout/Footer/Footer";
 
 const Home = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
-  console.log("data is ", winterProductData);
+  // console.log("data is ", winterProductData);
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());

@@ -1,37 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterImage from "../../Images/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
-import axios from "axios";
-
+import { registerUser } from "../actions/userAction";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 export const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-
-  console.log(name, "", email, "", password, " ", confirmPassword);
-
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  // console.log(name, "", email, "", password, " ", confirmPassword);
+  console.log(loading);
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = axios.post("http://localhost:8080/api/register", {
-        name,
-        email,
-        password,
-        phoneNumber: phone,
-      });
-      console.log(res);
-      toast.success("Registration successfull");
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(registerUser({ name, phone, email, password }));
   };
-
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
   return (
     <>
       <div className="container">
@@ -129,7 +120,7 @@ export const Register = () => {
                 type="submit"
                 className="btn btn-primary w-100 rounded-pill mt-2"
               >
-                Sign up
+                {loading ? <>loading...</> : <>Sign up</>}
               </button>
             </form>
 
