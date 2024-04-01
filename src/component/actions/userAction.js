@@ -21,8 +21,11 @@ export const registerUser = (userData) => async (dispatch) => {
       phoneNumber: phone,
       password,
     });
-    // console.log("data is ", res.data);
-    dispatch(REGISTER_USER_SUCCESS(res.data));
+    // console.log("data is ", res?.data);
+    if (res?.data?.success) dispatch(REGISTER_USER_SUCCESS(res.data));
+    else {
+      dispatch(REGISTER_USER_FAIL(res?.data?.message));
+    }
   } catch (err) {
     dispatch(REGISTER_USER_FAIL());
     // Handle error if needed
@@ -38,12 +41,12 @@ export const loginUser = (email, password) => async (dispatch) => {
       email,
       password,
     });
-    console.log("data is ", res.data);
+    // console.log("data is ", res.data);
     if (res?.data?.success) {
       localStorage.setItem("authId", res?.data?.user?.id);
       dispatch(LOGIN_USER_SUCCESS(res.data));
     } else {
-      dispatch(LOGIN_USER_FAIL());
+      dispatch(LOGIN_USER_FAIL(res.data));
     }
   } catch (e) {
     dispatch(LOGIN_USER_FAIL());

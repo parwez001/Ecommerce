@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import trusttLogo from "../../../Images/trusttLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../actions/userAction";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -10,6 +11,12 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+  useEffect(
+    (e) => {
+      if (!isAuthenticated) toast.success("Logout Success");
+    },
+    [isAuthenticated, dispatch]
+  );
   return (
     <>
       <div className="container-lg">

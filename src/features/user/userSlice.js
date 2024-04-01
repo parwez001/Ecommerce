@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   loading: false,
   isAuthenticated: false,
+  error: null,
 };
 
 export const userSlice = createSlice({
@@ -13,17 +14,23 @@ export const userSlice = createSlice({
     // register
     REGISTER_USER_REQUEST: (state) => {
       state.loading = true;
+      state.error = null;
     },
     REGISTER_USER_SUCCESS: (state, action) => {
       state.user = action.payload;
+      state.isAuthenticated = true;
       state.loading = false;
+      state.error = null;
     },
-    REGISTER_USER_FAIL: (state) => {
+    REGISTER_USER_FAIL: (state, action) => {
       state.loading = false;
+      console.log("reducer ", action.payload);
+      state.error = action.payload;
     },
     Login_USER_REQUEST: (state) => {
       state.loading = true;
       state.isAuthenticated = false;
+      state.error = null;
     },
 
     // login
@@ -31,10 +38,13 @@ export const userSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
       state.loading = false;
+      state.error = null;
     },
-    LOGIN_USER_FAIL: (state) => {
+    LOGIN_USER_FAIL: (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
+      console.log(action.payload.message);
+      state.error = action.payload.message;
     },
 
     // logout

@@ -14,10 +14,16 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser(email, password));
   };
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { error, loading, isAuthenticated, user } = useSelector(
+    (state) => state.user
+  );
   useEffect(() => {
-    if (isAuthenticated) navigate("/");
-  }, [isAuthenticated, navigate]);
+    if (isAuthenticated) {
+      toast.success(user.message);
+      navigate("/");
+    }
+    if (error) toast.error(error);
+  }, [isAuthenticated, navigate, error, dispatch]);
   return (
     <>
       <div className="container">
@@ -73,7 +79,6 @@ const Login = () => {
                 type="submit"
                 className="btn btn-primary w-100 rounded-pill mt-2"
               >
-                Log in
                 {loading ? <>Loadin...</> : <> Log in </>}
               </button>
             </form>

@@ -13,16 +13,24 @@ export const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { loading, isAuthenticated, error, user } = useSelector(
+    (state) => state.user
+  );
   // console.log(name, "", email, "", password, " ", confirmPassword);
-  console.log(loading);
+  // console.log(error, isAuthenticated);
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     dispatch(registerUser({ name, phone, email, password }));
   };
   useEffect(() => {
-    if (isAuthenticated) navigate("/");
-  }, [isAuthenticated, navigate]);
+    if (isAuthenticated) {
+      toast.success(user.message);
+      navigate("/");
+    }
+    if (error) {
+      toast.error(error);
+    }
+  }, [isAuthenticated, navigate, error, dispatch]);
   return (
     <>
       <div className="container">
