@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import charImage from "../../../Images/chair.png";
+import { UseSelector, useSelector } from "react-redux";
 
 const Checkout = () => {
+  const { isAuthenticated } = useSelector((state) => state.user);
   const [isLogin, setIsLogin] = useState(false);
   return (
     <div className="container-lg mb-3">
@@ -15,7 +17,7 @@ const Checkout = () => {
       </div>
       <div className="row">
         <div className="col-lg-8 h-auto mb-3">
-          {!isLogin ? (
+          {!isAuthenticated ? (
             <div className="d-flex justify-content-between w-100 mt-2 align-items-center">
               <div className="">
                 <h4>Sign in</h4>
@@ -65,7 +67,7 @@ const Checkout = () => {
           )}
 
           <hr />
-          {isLogin && (
+          {isAuthenticated && (
             <div className="row">
               <h4 className="fw-bold">Order Summary</h4>
               <div className="col-lg-8 h-auto">

@@ -12,11 +12,17 @@ import { autumnProductData } from "../../data/autumnProductData";
 import TrendingProduct from "../Components/TrendingProduct";
 import memberImage from "../../Images/member.jpg";
 import Footer from "../Layout/Footer/Footer";
-
+import axios from "axios";
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../actions/productAction";
 const Home = () => {
+  const dispatch = useDispatch();
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [winterProductData, setwinterProductData] = useState();
+  const { products, loading } = useSelector((state) => state.product);
   // console.log("data is ", winterProductData);
   useEffect(() => {
+    dispatch(getAllProducts());
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -26,7 +32,7 @@ const Home = () => {
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
-  }, []);
+  }, [dispatch]);
   function getWindowSize() {
     const { innerWidth } = window;
     return { innerWidth };
@@ -94,14 +100,14 @@ const Home = () => {
             className="mySwiper"
             style={{ height: "28em" }}
           >
-            {winterProductData &&
-              winterProductData.map((item, i) => (
+            {products &&
+              products.map((item, i) => (
                 <SwiperSlide key={i}>
                   <Product
                     image={item.src}
-                    name={item.name}
-                    price={item.price}
-                    category={item.category}
+                    name={item.productName}
+                    price={item.productPrice}
+                    category={item.productDescription}
                   />
                 </SwiperSlide>
               ))}
@@ -134,14 +140,14 @@ const Home = () => {
             className="mySwiper"
             style={{ height: "29em" }}
           >
-            {chairProductData &&
-              chairProductData.map((item, i) => (
+            {products &&
+              products.map((item, i) => (
                 <SwiperSlide key={i}>
                   <Product
                     image={item.src}
-                    name={item.name}
-                    price={item.price}
-                    category={item.category}
+                    name={item.productName}
+                    price={item.productPrice}
+                    category={item.productDescription}
                   />
                 </SwiperSlide>
               ))}

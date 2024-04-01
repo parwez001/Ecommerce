@@ -10,6 +10,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    // register
     REGISTER_USER_REQUEST: (state) => {
       state.loading = true;
     },
@@ -24,6 +25,8 @@ export const userSlice = createSlice({
       state.loading = true;
       state.isAuthenticated = false;
     },
+
+    // login
     LOGIN_USER_SUCCESS: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
@@ -33,6 +36,8 @@ export const userSlice = createSlice({
       state.loading = false;
       state.isAuthenticated = false;
     },
+
+    // logout
     LOGOUT_USER_REQUEST: (state) => {
       state.isAuthenticated = true;
     },
