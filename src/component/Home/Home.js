@@ -117,6 +117,7 @@ const Home = () => {
                     name={item.productName}
                     price={item.productPrice}
                     category={item.productDescription}
+                    pId={item.id}
                   />
                 </SwiperSlide>
               ))}
@@ -157,6 +158,7 @@ const Home = () => {
                     name={item.productName}
                     price={item.productPrice}
                     category={item.productDescription}
+                    pId={item.id}
                   />
                 </SwiperSlide>
               ))}

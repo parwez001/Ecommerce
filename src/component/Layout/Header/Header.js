@@ -44,11 +44,6 @@ const Header = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/products">
-                  Products
-                </Link>
-              </li>
             </ul>
             <form className="d-flex  mb-2 mb-lg-0">
               <input
