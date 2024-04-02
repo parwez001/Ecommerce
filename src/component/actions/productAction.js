@@ -9,7 +9,7 @@ export const getAllProducts = () => async (dispatch) => {
   dispatch(ALL_PRODUCTS_REQUEST());
 
   try {
-    const res = await axios.get("http://localhost:8080/products");
+    const res = await axios.get("http://172.16.6.230:8080/product/");
     dispatch(ALL_PRODUCTS_SUCCESS(res?.data));
   } catch (error) {
     dispatch(ALL_PRODUCTS_FAIL());

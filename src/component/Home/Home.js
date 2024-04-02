@@ -18,11 +18,20 @@ import { getAllProducts } from "../actions/productAction";
 const Home = () => {
   const dispatch = useDispatch();
   const [windowSize, setWindowSize] = useState(getWindowSize());
-  const [winterProductData, setwinterProductData] = useState();
+  const [winterProduct, setwinterProduct] = useState();
   const { products, loading } = useSelector((state) => state.product);
   // console.log("data is ", winterProductData);
+  const getWinterProduct = async () => {
+    try {
+      const res = await axios.get("http://172.16.6.230:8080/product/Winter");
+      // console.log("winter ", res?.data);
+      setwinterProduct(res?.data);
+    } catch (error) {}
+  };
   useEffect(() => {
-    dispatch(getAllProducts());
+    // dispatch(getAllProducts());
+    getWinterProduct();
+
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -100,11 +109,11 @@ const Home = () => {
             className="mySwiper"
             style={{ height: "28em" }}
           >
-            {products &&
-              products.map((item, i) => (
+            {winterProduct &&
+              winterProduct.map((item, i) => (
                 <SwiperSlide key={i}>
                   <Product
-                    image={item.src}
+                    image={item.imageUrl}
                     name={item.productName}
                     price={item.productPrice}
                     category={item.productDescription}
@@ -144,7 +153,7 @@ const Home = () => {
               products.map((item, i) => (
                 <SwiperSlide key={i}>
                   <Product
-                    image={item.src}
+                    image={item.imageUrl}
                     name={item.productName}
                     price={item.productPrice}
                     category={item.productDescription}
