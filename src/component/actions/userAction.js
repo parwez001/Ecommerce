@@ -15,7 +15,7 @@ export const registerUser = (userData) => async (dispatch) => {
   dispatch(REGISTER_USER_REQUEST());
   try {
     const { name, phone, email, password } = userData;
-    const res = await axios.post("http://localhost:8080/api/register", {
+    const res = await axios.post("http://172.16.6.230:8080/api/register", {
       name,
       email,
       phoneNumber: phone,
@@ -37,7 +37,7 @@ export const loginUser = (email, password) => async (dispatch) => {
   dispatch(Login_USER_REQUEST());
 
   try {
-    const res = await axios.post("http://localhost:8080/api/login", {
+    const res = await axios.post("http://172.16.6.230:8080/api/login", {
       email,
       password,
     });
